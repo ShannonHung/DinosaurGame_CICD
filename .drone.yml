@@ -1,0 +1,91 @@
+  # - name: build
+  #   image: node:13.12.0-alpine
+  #   commands:
+  #   - yarn install
+
+  # - name: test
+  #   image: node:13.12.0-alpine
+  #   commands:
+  #   - npm run test
+
+  # - name: docker-build
+  #   image: plugins/docker
+  #   settings:
+  #     username: ${username}
+  #     password: ${password}
+  #     repo: shannonhung/react-myread
+  #     tags: latest
+  
+pipeline:
+  build:
+    image: node:13.12.0-alpine
+    commands:
+      - yarn install
+      - yarn test
+
+  ######### 正式版##########
+# kind: pipeline
+# type: docker
+# name: Staging
+
+# steps:
+#   - name: build
+#     image: node
+#     commands:
+#     - yarn install
+
+#   - name: test
+#     image: node
+#     commands:
+#     - npm run test
+
+#   - name: Build docker image
+#     image: docker/compose:1.23.2
+#     volumes:
+#       - name: docker_socket
+#         path: /var/run/docker.sock
+#     commands:
+#       - echo "test"
+#       - cd /drone/src/
+#       - docker build -t dronetest:latest .
+
+#   - name: Create service
+#     image: docker/compose
+#     volumes:
+#       - name: docker_socket
+#         path: /var/run/docker.sock
+#     commands:
+#       #把原本的container 關掉
+#       - docker-compose -f /drone/src/docker-compose.yml -p backend down
+#       #重新開啟現在的container
+#       - docker-compose -f /drone/src/docker-compose.yml -p backend up -d
+# volumes:
+#   - name: docker_socket
+#     host:
+#       path: /var/run/docker.sock
+
+
+  ######### 正式版##########
+
+# 失敗...不知道為甚麼QQIKjU9SIQRYW6T8lcKllzZvxK
+  # - name: notify
+  #   image: plugins/slack
+  #   settings:
+  #     webhook: https://hooks.slack.com/services/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
+  #     channel: workspace
+  #     template: >
+  #       *{{#success build.status}}✔{{ else }}✘{{/success}} {{ uppercasefirst build.status }}: Build #{{ build.number }}* (type: `{{ build.event }}`)
+
+  #       Commit: {{ repo.name }}/{{ truncate build.commit 8 }}
+
+  #       Branch: {{ build.branch }}
+
+  #       Author: {{ build.author }}
+
+  #       <{{ build.link }}|Visit build page ↗>
+  #   when:
+  #     branch:
+  #       - master
+  #     event:
+  #       - push
+  #     status: [ success, failure ]
