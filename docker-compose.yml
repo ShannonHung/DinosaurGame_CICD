@@ -1,9 +1,8 @@
 version: '3.3'
 # 定義您想要在應用程式中執行的服務 (或container) 清單
 services: 
-  #  您可以為服務挑選任何名稱。 名稱會自動成為網路別名
-  dronetest: 
-    image: dronetest
+  dronetesthere: 
+    image: dinogame
     build: .
     ports:
       - '3001:3001'
