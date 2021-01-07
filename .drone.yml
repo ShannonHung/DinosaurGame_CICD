@@ -16,38 +16,38 @@
   #     repo: shannonhung/react-myread
   #     tags: latest
   
-pipeline:
-  build:
-    image: node:13.12.0-alpine
-    commands:
-      - yarn install
-      - yarn test
+# pipeline:
+#   build:
+#     image: node:13.12.0-alpine
+#     commands:
+#       - yarn install
+#       - yarn test
 
   ######### 正式版##########
-# kind: pipeline
-# type: docker
-# name: Staging
+kind: pipeline
+type: docker
+name: Staging
 
-# steps:
-#   - name: build
-#     image: node
-#     commands:
-#     - yarn install
+steps:
+  - name: build
+    image: node
+    commands:
+    - yarn install
 
-#   - name: test
-#     image: node
-#     commands:
-#     - npm run test
+  - name: test
+    image: node
+    commands:
+    - yarn test
 
-#   - name: Build docker image
-#     image: docker/compose:1.23.2
-#     volumes:
-#       - name: docker_socket
-#         path: /var/run/docker.sock
-#     commands:
-#       - echo "test"
-#       - cd /drone/src/
-#       - docker build -t dronetest:latest .
+  # - name: Build docker image
+  #   image: docker/compose:1.23.2
+  #   volumes:
+  #     - name: docker_socket
+  #       path: /var/run/docker.sock
+  #   commands:
+  #     - echo "test"
+  #     - cd /drone/src/
+  #     - docker build -t dronetest:latest .
 
 #   - name: Create service
 #     image: docker/compose
