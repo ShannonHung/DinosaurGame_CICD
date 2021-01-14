@@ -60,6 +60,7 @@ steps:
       #重新開啟現在的container
       - docker-compose -f /drone/src/docker-compose.yml -p backend up -d
       - docker rmi $(docker images -f "dangling=true" -q)
+      
 volumes:
   - name: docker_socket
     host:
