@@ -29,15 +29,15 @@ type: docker
 name: Staging
 
 steps:
-  - name: build
-    image: node
-    commands:
-    - yarn install
+  # - name: build
+  #   image: node
+  #   commands:
+  #   - yarn install
 
-  - name: test
-    image: node
-    commands:
-    - yarn test
+  # - name: test
+  #   image: node
+  #   commands:
+  #   - yarn test
 
   - name: Build docker image
     image: docker/compose:1.23.2
@@ -47,7 +47,7 @@ steps:
     commands:
       - echo "test"
       - cd /drone/src/
-      - docker build --no-cache -t dinogame:latest -f dinogame:latest .
+      - docker build -t dinogame:latest -f dinogame:latest .
       # - docker build -t dinogame:latest .
 
   - name: Create service
