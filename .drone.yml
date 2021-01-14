@@ -29,15 +29,15 @@ type: docker
 name: Staging
 
 steps:
-  # - name: build
-  #   image: node
-  #   commands:
-  #   - yarn install
+  - name: build
+    image: node
+    commands:
+    - yarn install
 
-  # - name: test
-  #   image: node
-  #   commands:
-  #   - yarn test
+  - name: test
+    image: node
+    commands:
+    - yarn test
 
   - name: Build docker image
     image: docker/compose:1.23.2
@@ -59,8 +59,9 @@ steps:
       - docker-compose -f /drone/src/docker-compose.yml -p backend down
       #重新開啟現在的container
       - docker-compose -f /drone/src/docker-compose.yml -p backend up -d
+      # docker rmi 表示移除images $(特定ID), docker images -f "dangling=true" -q 會show出所有tag=<none>的無用images, -q表示顯示 id
       - docker rmi $(docker images -f "dangling=true" -q)
-      
+
 volumes:
   - name: docker_socket
     host:
