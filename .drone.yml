@@ -47,8 +47,9 @@ steps:
     commands:
       - echo "test"
       - cd /drone/src/
-      - docker build -t dinogame:latest .
-
+      - docker build -t dinogame:latest .c
+      - docker rmi $(docker images -f "dangling=true" -q)
+      
   - name: Create service
     image: docker/compose
     volumes:
