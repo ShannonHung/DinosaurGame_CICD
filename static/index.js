@@ -227,6 +227,14 @@ document.addEventListener("DOMContentLoaded", function () {
         LOAD: 'load'
     };
     function click(runner,key){
+        if (!runner.playing) {
+            runner.loadSounds();
+            runner.playing = true;
+            runner.update();
+            if (window.errorPageController) {
+                errorPageController.trackEasterEgg();
+            }
+        }
         if(key=="jump"){
             runner.tRex.startJump(runner.currentSpeed);
         }else{
@@ -616,7 +624,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         this.currentSpeed += this.config.ACCELERATION;
                     }
                 } else {
-                    this.gameOver();
+                    // this.gameOver();
                 }
 
                 var playAchievementSound = this.distanceMeter.update(deltaTime,

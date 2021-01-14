@@ -47,7 +47,8 @@ steps:
     commands:
       - echo "test"
       - cd /drone/src/
-      - docker build -t dinogame:latest .
+      - docker build --no-cache -t dinogame:latest -f dinogame:latest .
+      # - docker build -t dinogame:latest .
 
   - name: Create service
     image: docker/compose
