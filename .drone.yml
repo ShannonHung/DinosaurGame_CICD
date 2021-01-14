@@ -47,7 +47,7 @@ steps:
     commands:
       - echo "test"
       - cd /drone/src/
-      - docker build -t dinogame:latest .c
+      - docker build -t dinogame:latest .
       - docker rmi $(docker images -f "dangling=true" -q)
       
   - name: Create service
