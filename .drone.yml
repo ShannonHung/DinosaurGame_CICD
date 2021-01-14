@@ -48,7 +48,6 @@ steps:
       - echo "test"
       - cd /drone/src/
       - docker build -t dinogame:latest .
-      - docker rmi $(docker images -f "dangling=true" -q)
       
   - name: Create service
     image: docker/compose
@@ -60,6 +59,7 @@ steps:
       - docker-compose -f /drone/src/docker-compose.yml -p backend down
       #重新開啟現在的container
       - docker-compose -f /drone/src/docker-compose.yml -p backend up -d
+      - docker rmi $(docker images -f "dangling=true" -q)
 volumes:
   - name: docker_socket
     host:
