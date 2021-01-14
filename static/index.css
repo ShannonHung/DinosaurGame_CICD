@@ -59,6 +59,8 @@ html, body {
 .offline .jump-controller {
   background: rgba(247, 247, 247, .1);
   background-color:#274C77;
+  color:white;
+  font-size: large;
   height: 35vh;
   left: 0;
   position: absolute;
@@ -70,6 +72,8 @@ html, body {
 .offline .duck-controller {
   background: rgba(247, 247, 247, .1);
   background-color:#60968A;
+  color:white;
+  font-size: large;
   height: 35vh;
   left: 0;
   position: absolute;

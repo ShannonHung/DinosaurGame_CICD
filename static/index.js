@@ -230,7 +230,13 @@ document.addEventListener("DOMContentLoaded", function () {
         if(key=="jump"){
             runner.tRex.startJump(runner.currentSpeed);
         }else{
-            runner.tRex.setDuck(true);
+            if (runner.tRex.jumping) {
+                        // Speed drop, activated only when jump key is not pressed.
+                runner.tRex.setSpeedDrop();
+            }else{
+                runner.tRex.setDuck(true);
+            }
+            
         }
         // if (runner.target != runner.detailsButton) {
         //     if (!runner.crashed && key=="jump" || e.type == Runner.events.TOUCHSTART) {
